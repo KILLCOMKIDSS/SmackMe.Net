@@ -29,8 +29,8 @@ import secrets
 import subprocess
 
 app = Flask(__name__)
-app.secret_key = 'KILLCOMKIDS'
-app.config['SECRET_KEY'] = 'KILLCOMKIDS'
+app.secret_key = ''
+app.config['SECRET_KEY'] = ''
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(basedir, "db.db")}'
 app.config['DATABASE'] = 'db.db'
