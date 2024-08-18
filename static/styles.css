@@ -1,0 +1,123 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Black background */
+    color: #e0e0e0; /* Light gray text color for contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container for profile */
+.container {
+    background-color: rgba(40, 40, 40, 0.9); /* Slightly transparent dark gray background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
+    max-width: 1200px; /* Adjusted for wider layout */
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Distribute space between items */
+}
+
+/* Section styles */
+.section {
+    background-color: rgba(50, 50, 50, 0.9); /* Slightly transparent dark gray background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    flex: 1 1 calc(33% - 20px); /* Adjust width for three side-by-side sections */
+    margin: 10px;
+    min-width: 300px; /* Minimum width to ensure responsiveness */
+}
+
+/* Header styles */
+h2 {
+    margin-top: 0;
+    color: #f0f0f0; /* Light gray color for the header */
+}
+
+/* Label styles */
+label {
+    display: block;
+    margin-bottom: 8px;
+    text-align: left;
+    color: #b0b0b0; /* Medium light gray for labels */
+}
+
+/* Input styles */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #444; /* Darker gray border */
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #333; /* Dark background for input fields */
+    color: #e0e0e0; /* Light gray text color */
+}
+
+/* Submit button styles */
+input[type="submit"] {
+    background-color: #007bff; /* Blue background */
+    color: #ffffff; /* White text color */
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Button styles */
+button {
+    background-color: #28a745; /* Green background for buttons */
+    color: white; /* White text color */
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: calc(100% - 40px);
+}
+
+button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Form styles */
+form {
+    margin: 20px 0;
+}
+
+/* Textarea styles */
+textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #444; /* Darker gray border */
+    border-radius: 4px;
+    background-color: #333; /* Dark background for textarea */
+    color: #e0e0e0; /* Light gray text color */
+    box-sizing: border-box;
+}
+

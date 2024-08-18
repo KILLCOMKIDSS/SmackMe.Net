@@ -1,0 +1,187 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #2e3440;
+    color: #eceff4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    background-color: #3b4252;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.sidebar a {
+    color: #eceff4;
+    padding: 10px;
+    margin: 5px 0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.sidebar a:hover {
+    background-color: #4c566a;
+}
+
+.sidebar a.active {
+    background-color: #5e81ac;
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #4c566a;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #3b4252;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.header .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.header .user-info img {
+    border-radius: 50%;
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Session Panel */
+.session-panel {
+    background-color: #3b4252;
+    border-radius: 8px;
+    padding: 20px;
+    width: 60%;
+    margin-right: 20px;
+}
+
+.session-panel h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.session-panel button {
+    background-color: #d08770;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.session-panel button:hover {
+    background-color: #bf616a;
+}
+
+/* Linked Xbox Account Panel */
+.account-panel {
+    background-color: #3b4252;
+    border-radius: 8px;
+    padding: 20px;
+    width: 30%;
+}
+
+.account-panel h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.account-panel img {
+    border-radius: 50%;
+    margin-bottom: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.account-panel .account-info {
+    margin-bottom: 20px;
+}
+
+.account-panel button {
+    background-color: #88c0d0;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.account-panel button:hover {
+    background-color: #81a1c1;
+}
+
+/* FAQ Panel */
+.faq-panel {
+    background-color: #3b4252;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.faq-panel h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.faq-panel button {
+    background-color: #5e81ac;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    margin: 5px 0;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.faq-panel button:hover {
+    background-color: #4c566a;
+}
+

@@ -1,0 +1,132 @@
+body {                                                                                                                            
+    font-family: Arial, sans-serif;                                                                                               
+    color: #333;                                                                                                                  
+    background-color: #f9f9f9;                                                                                                    
+    margin: 0;                                                                                                                    
+    padding: 0;                                                                                                                   
+    line-height: 1.6;                                                                                                         
+}                                                                                                                                                                                                                                                           
+/* Header */                                                                                                                  
+h1, h2, h3 {                                                                                                                      
+    color: #006600;                                                                                                               
+    margin-top: 20px;                                                                                                         
+}                                                                                                                                                                                                                                                           
+h1 {                                                                                                                              
+    font-size: 3em;                                                                                                               
+    text-align: center;                                                                                                           
+    margin-bottom: 10px;                                                                                                          
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);                                                                              
+}                                                                                                                                                                                                                                                           
+h2 {                                                                                                                              
+    font-size: 2.5em;                                                                                                             
+    text-align: left;                                                                                                             
+    padding-left: 20px;                                                                                                           
+    margin-bottom: 10px;                                                                                                          
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);                                                                              
+}                                                                                                                                                                                                                                                           
+h3 {                                                                                                                              
+    font-size: 1.8em;                                                                                                             
+    margin-bottom: 15px;                                                                                                          
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);                                                                              
+}                                                                                                                                                                                                                                                           
+/* Navigation Bar */                                                                                                          
+nav ul {                                                                                                                          
+    list-style: none;                                                                                                             
+    padding: 10px;                                                                                                                
+    text-align: right;                                                                                                            
+    background-color: #333;    
+    border: none; /* Removed any border around the nav bar */
+    outline: none; /* Ensure no outline */
+    box-shadow: none; /* Ensure no shadow */                                                                                                
+}                                                                                                                                                                                                                                                           
+nav ul li {                                                                                                                       
+    display: inline;                                                                                                              
+    margin-right: 20px;                                                                                                       
+}                                                                                                                                                                                                                                                           
+nav ul li a {                                                                                                                     
+    color: white;                                                                                                                 
+    text-decoration: none;                                                                                                        
+    font-weight: bold;                                                                                                        
+}                                                                                                                                                                                                                                                           
+nav ul li a:hover {                                                                                                               
+    text-decoration: underline;                                                                                               
+}                                                                                                                                                                                                                                                           
+/* Container and Sections */                                                                                                  
+.container {                                                                                                                      
+    width: 80%;                                                                                                                   
+    margin: 0 auto; /* Changed from 'auto' to '0 auto' to remove top margin */                                                   
+    overflow: hidden;                                                                                                         
+}                                                                                                                                                                                                                                                           
+/* General Section Styling */                                                                                                 
+section {                                                                                                                        
+    padding: 20px;                                                                                                                
+    margin-bottom: 20px;                                                                                                          
+    background: white;                                                                                                            
+    border-radius: 10px;                                                                                                          
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);                                                                                       
+    border: 2px solid #006600;                                                                                                    
+    margin-top: -20px; /* Move section up closer to the navigation bar */                                                      
+}                                                                                                                                                                                                                                                           
+/* Welcome Section */                                                                                                         
+.welcome {                                                                                                                        
+    font-size: 1.2em;                                                                                                             
+    color: #006600;                                                                                                               
+    padding: 20px;                                                                                                                
+    background: #f4f4f4;                                                                                                          
+    border-radius: 10px;                                                                                                          
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);                                                                                   
+    margin-bottom: 20px; /* Ensures proper spacing from the section below */                                                   
+    margin-top: -20px; /* Move welcome section up to align with container */                                                    
+}                                                                                                                                                                                                                                                           
+.welcome p {                                                                                                                      
+    margin: 10px 0;                                                                                                          
+}                                                                                                                                                                                                                                                           
+/* Services Section */                                                                                                        
+.services {                                                                                                                       
+    font-size: 1.1em;                                                                                                             
+    color: #333;                                                                                                                  
+    padding: 20px;                                                                                                                
+    background: #f4f4f4;                                                                                                          
+    border-radius: 10px;                                                                                                          
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);                                                                                   
+    margin-bottom: 20px; /* Ensures proper spacing from the section above */                                                   
+}                                                                                                                                                                                                                                                           
+.services h3 {                                                                                                                    
+    color: #006600;                                                                                                               
+    margin-top: 40px;                                                                                                             
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);                                                                              
+}                                                                                                                                                                                                                                                           
+.services ul {                                                                                                                    
+    list-style-type: none;                                                                                                        
+    padding: 0;                                                                                                              
+}                                                                                                                                                                                                                                                           
+.services ul li {                                                                                                                 
+    margin-bottom: 15px;                                                                                                          
+    border: 1px solid #ccc;                                                                                                       
+    padding: 10px;                                                                                                                
+    background: white;                                                                                                            
+    border-radius: 5px;                                                                                                           
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);                                                                                    
+    transition: transform 0.2s;                                                                                               
+}                                                                                                                                                                                                                                                           
+.services ul li:hover {                                                                                                           
+    transform: scale(1.05);                                                                                                   
+}                                                                                                                                                                                                                                                           
+/* Footer */                                                                                                                  
+footer {                                                                                                                          
+    text-align: center;                                                                                                           
+    padding: 20px;                                                                                                                
+    background-color: #333;                                                                                                       
+    color: white;                                                                                                                 
+    margin-top: 20px;                                                                                                             
+    border-top: 3px solid #006600;                                                                                                
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);                                                                                
+}                                                                                                                                                                                                                                                           
+footer a {                                                                                                                        
+    color: #006600;                                                                                                               
+    text-decoration: none;                                                                                                    
+}                                                                                                                                                                                                                                                           
+footer a:hover {                                                                                                                  
+    text-decoration: underline;                                                                                               
+}
+

@@ -1,0 +1,233 @@
+/* General Styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 85%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    background-color: #003366;
+    color: #ffffff;
+    padding: 15px 0;
+    text-align: center;
+    border-bottom: 5px solid #004080;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+header nav {
+    margin-top: 10px;
+}
+
+header nav a {
+    color: #ffffff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Layout */
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.sidebar {
+    flex: 1;
+    min-width: 250px;
+    background-color: #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.main-section {
+    flex: 3;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    background-color: #003366;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px 0;
+    border-top: 5px solid #004080;
+}
+
+/* Forms */
+form {
+    margin: 20px 0;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+form input[type="text"], 
+form input[type="password"], 
+form input[type="email"], 
+form select, 
+form textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+form input[type="submit"], 
+form button {
+    background-color: #0056b3;
+    color: #ffffff;
+    border: none;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover, 
+form button:hover {
+    background-color: #004080;
+}
+
+/* UDP Flood Functionality */
+.udp-flood-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.udp-flood-container h2 {
+    color: #003366;
+    border-bottom: 2px solid #004080;
+    padding-bottom: 10px;
+}
+
+.udp-flood-container .form-group {
+    margin-bottom: 20px;
+}
+
+.udp-flood-container .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: normal;
+    color: #666;
+}
+
+.udp-flood-container .form-group input {
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Cybersecurity Sections */
+.cybersecurity-section {
+    background-color: #003366;
+    color: #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cybersecurity-section h2 {
+    color: #1e90ff;
+    border-bottom: 3px solid #004080;
+    padding-bottom: 10px;
+}
+
+.cybersecurity-section p {
+    line-height: 1.8;
+}
+
+.cybersecurity-links {
+    list-style: none;
+    padding: 0;
+}
+
+.cybersecurity-links li {
+    margin-bottom: 12px;
+}
+
+.cybersecurity-links a {
+    color: #1e90ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cybersecurity-links a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .main-section {
+        width: 100%;
+    }
+
+    header nav a {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    form input[type="submit"], 
+    form button {
+        width: 100%;
+        padding: 12px;
+    }
+}
+

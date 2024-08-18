@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP OSINT Lookup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='hello.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2 id="ip-lookup-heading">IP OSINT Lookup</h2>
+        <form id="ip-form">
+            <label for="ip-address">Enter IP Address:</label>
+            <input type="text" id="ip-address" name="ip" placeholder="IPv4 or IPv6 address">
+            <button type="submit" id="lookup-btn">Lookup</button>
+        </form>
+        <div id="ip-details">
+            <!-- Results will be displayed here -->
+        </div>
+        <p><a href="{{ url_for('profile') }}">Back to Profile</a></p>
+    </div>
+
+    <script>
+        document.getElementById('ip-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            var ipAddress = document.getElementById("ip-address").value.trim();
+            if (ipAddress === "") {
+                alert("Please enter an IP address.");
+                return;
+            }
+
+            fetch(`/ip_osint_lookup?ip=${ipAddress}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayIPDetails(data);
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        function displayIPDetails(data) {
+            var ipDetails = document.getElementById("ip-details");
+            ipDetails.innerHTML = ""; // Clear previous content
+
+            if (data.error) {
+                ipDetails.innerHTML = "<p>Error: " + data.error + "</p>";
+            } else {
+                var detailsHTML = "<h3>IP Details:</h3>";
+                detailsHTML += "<p><strong>IP Version:</strong> " + data.ip_version + "</p>";
+                detailsHTML += "<p><strong>Coordinates:</strong> " + data.coordinates + "</p>";
+                detailsHTML += "<p><strong>Country Code:</strong> " + data.country_code + "</p>";
+                detailsHTML += "<p><strong>Country ISO3 Code:</strong> " + data.country_iso3_code + "</p>";
+                detailsHTML += "<p><strong>Country Capital:</strong> " + data.country_capital + "</p>";
+                detailsHTML += "<p><strong>Country TLD:</strong> " + data.country_tld + "</p>";
+                detailsHTML += "<p><strong>In EU:</strong> " + data.in_eu + "</p>";
+                detailsHTML += "<p><strong>UTC Offset:</strong> " + data.utc_offset + "</p>";
+                detailsHTML += "<p><strong>Country Calling Code:</strong> " + data.country_calling_code + "</p>";
+                detailsHTML += "<p><strong>Currency:</strong> " + data.currency + "</p>";
+                detailsHTML += "<p><strong>Currency Name:</strong> " + data.currency_name + "</p>";
+                detailsHTML += "<p><strong>Country Area:</strong> " + data.country_area + "</p>";
+                detailsHTML += "<p><strong>Country Population:</strong> " + data.country_population + "</p>";
+                detailsHTML += "<p><strong>ASN:</strong> " + data.asn + "</p>";
+                detailsHTML += "<p><strong>Postal Code:</strong> " + data.postal_code + "</p>";
+                detailsHTML += "<p><strong>Timezone:</strong> " + data.timezone + "</p>";
+                detailsHTML += "<p><strong>IPv6 Address:</strong> " + data.ipv6_address + "</p>";
+                detailsHTML += "<p><strong>Local IP Address:</strong> " + data.local_ip_address + "</p>";
+                detailsHTML += "<p><strong>Public IP Address:</strong> " + data.public_ip_address + "</p>";
+                detailsHTML += "<p><strong>OS:</strong> " + data.os + "</p>";
+                detailsHTML += "<p><strong>Link:</strong> " + data.link + "</p>";
+                detailsHTML += "<p><strong>MTU:</strong> " + data.mtu + "</p>";
+                detailsHTML += "<p><strong>Distance:</strong> " + data.distance + "</p>";
+                detailsHTML += "<p><strong>JA3 Hash:</strong> " + data.ja3_hash + "</p>";
+                detailsHTML += "<p><strong>Akamai Hash:</strong> " + data.akamai_hash + "</p>";
+                detailsHTML += "<p><strong>City:</strong> " + data.city + "</p>";
+                detailsHTML += "<p><strong>State:</strong> " + data.state + "</p>";
+                detailsHTML += "<p><strong>Local Time:</strong> " + data.local_time + "</p>";
+
+                ipDetails.innerHTML = detailsHTML;
+            }
+        }
+    </script>
+</body>
+</html>

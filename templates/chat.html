@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='chat.js') }}" defer></script>
+</head>
+<body>
+    <div class="chat-container">
+        <header>
+            <a href="{{ url_for('chat') }}" class="home-link">Home</a> ------->>>>> Go Back To
+            <a href="{{ url_for('profile') }}" class= "profile-link">Profile</a>
+        </header>
+        <div class="chat-box">
+            <div id="messages" class="messages"></div>
+            <form id="chat-form">
+                <input type="text" id="message" placeholder="Type a message..." autocomplete="off" required>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+

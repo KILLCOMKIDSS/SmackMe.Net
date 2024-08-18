@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .main-heading {
+            text-align: center;
+            margin: 20px 0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+        ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+        ul li a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .welcome-message {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .section-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            padding: 20px;
+        }
+        .section {
+            flex: 1;
+            min-width: 250px;
+            max-width: 500px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section h3 {
+            margin-top: 0;
+        }
+        .terminal {
+            font-family: monospace;
+            white-space: pre-wrap;
+            background: #000000;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: auto;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .back-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="main-heading">Dashboard</h2>
+    <!-- Navigation Links -->
+    {% if 'user_id' in session %}
+        <ul>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/">Front Page</a></li>
+        </ul>
+        <p class="welcome-message">Welcome to the dashboard!</p>
+    {% else %}
+        <p>You need to <a href="{{ url_for('login') }}">log in</a> to access the dashboard.</p>
+    {% endif %}
+    <!-- Sections for different metrics -->
+    <div class="section-container">
+        <div class="section">
+            <h3>Active Connections</h3>
+            <pre class="terminal" id="active-connections-terminal"></pre>
+            <button onclick="updateActiveConnections()">Update Active Connections</button>
+        </div>
+        <div class="section">
+            <h3>Logins</h3>
+            <pre class="terminal" id="logins-terminal"></pre>
+            <button onclick="updateLogins()">Update Logins</button>
+        </div>
+        <div class="section">
+            <h3>SSH Brute Forces</h3>
+            <pre class="terminal" id="ssh-brute-forces-terminal"></pre>
+            <button onclick="updateSshBruteForces()">Update SSH Brute Forces</button>
+        </div>
+        <div class="section">
+            <h3>UDP Floods</h3>
+            <pre class="terminal" id="udp-floods-terminal"></pre>
+            <button onclick="updateUdpFloods()">Update UDP Floods</button>
+        </div>
+        <div class="section">
+            <h3>IP OSINT Lookups</h3>
+            <pre class="terminal" id="ip-osint-lookups-terminal"></pre>
+            <button onclick="updateIpOsintLookups()">Update IP OSINT Lookups</button>
+        </div>
+    </div>
+    <p class="back-link"><a href="{{ url_for('index') }}">Back to Home</a></p>
+    <!-- JavaScript for updating sections dynamically -->
+    <script>
+        async function updateActiveConnections() {
+            try {
+                let response = await fetch('/api/active-connections');
+                let data = await response.json();
+                document.getElementById('active-connections-terminal').textContent = `Active connections: ${data.activeConnections}`;
+            } catch (error) {
+                console.error('Error updating active connections:', error);
+            }
+        }
+        async function updateLogins() {
+            try {
+                let response = await fetch('/api/logins');
+                let data = await response.json();
+                document.getElementById('logins-terminal').textContent = `Logins: ${data.logins}`;
+            } catch (error) {
+                console.error('Error updating logins:', error);
+            }
+        }
+        async function updateSshBruteForces() {
+            try {
+                let response = await fetch('/api/ssh-brute-forces');
+                let data = await response.json();
+                document.getElementById('ssh-brute-forces-terminal').textContent = `SSH brute force attempts: ${data.sshBruteForces}`;
+            } catch (error) {
+                console.error('Error updating SSH brute forces:', error);
+            }
+        }
+        async function updateUdpFloods() {
+            try {
+                let response = await fetch('/api/udp-floods');
+                let data = await response.json();
+                document.getElementById('udp-floods-terminal').textContent = `UDP floods: ${data.udpFloods}`;
+            } catch (error) {
+                console.error('Error updating UDP floods:', error);
+            }
+        }
+        async function updateIpOsintLookups() {
+            try {
+                let response = await fetch('/api/ip-osint-lookups');
+                let data = await response.json();
+                document.getElementById('ip-osint-lookups-terminal').textContent = `IP OSINT lookups: ${data.ipOsintLookups}`;
+            } catch (error) {
+                console.error('Error updating IP OSINT lookups:', error);
+            }
+        }
+    </script>
+</body>
+</html>

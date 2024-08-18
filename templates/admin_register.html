@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004b9a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Register New Admin</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('register_admin') }}" method="post">
+            <div class="form-group">
+                <label for="new_name">Name:</label>
+                <input type="text" id="new_name" name="new_name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="new_phone">Phone Number:</label>
+                <input type="tel" id="new_phone" name="new_phone" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="new_email">Email:</label>
+                <input type="email" id="new_email" name="new_email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="new_password">Password:</label>
+                <input type="password" id="new_password" name="new_password" class="form-control" required>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+        <div class="text-center mt-3">
+            <a href="{{ url_for('admin_login') }}">Back to Login</a>
+        </div>
+    </div>
+</body>
+</html>

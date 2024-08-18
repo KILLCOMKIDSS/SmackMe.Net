@@ -1,0 +1,51 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items at the top */
+    min-height: 100vh; /* Ensure full viewport height */
+    padding: 20px; /* Add padding to body */
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/LH_95.jpg/640px-LH_95.jpg'); /* Background image */
+    background-size: cover; /* Cover the entire background */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    background-position: center center; /* Center the image */
+}
+
+/* Container for profile */
+.container {
+    max-width: 800px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 20px; /* Adjusted margin top for spacing */
+}
+
+/* Header styles */
+h2 {
+    color: #333333;
+    margin-top: 0;
+}
+
+/* Box around each input */
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-bottom: 10px; /* Spacing between inputs */
+}
+

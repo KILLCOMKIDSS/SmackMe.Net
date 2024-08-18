@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSH Brute Force Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>SSH Brute Force Tool</h2>
+        <form action="{{ url_for('perform_ssh_brute_force') }}" method="post" enctype="multipart/form-data">
+            <label for="target_ip">Target IP:</label>
+            <input type="text" id="target_ip" name="target_ip" placeholder="Target IP" required><br>
+            <label for="target_port">Target Port:</label>
+            <input type="text" id="target_port" name="target_port" placeholder="Target Port" required><br>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Username" required><br>
+            <label for="password_list">Password List (text file):</label>
+            <input type="file" id="password_list" name="password_list" accept=".txt" required><br>
+            <button type="submit">Start Brute Force</button>
+        </form>
+        <h2>Password Strength Checker</h2>
+        <form id="passwordCheckerForm">
+            <label for="password">Enter Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required><br>
+            <button type="button" onclick="checkPasswordStrength()">Check Strength</button>
+        </form>
+        <div id="strengthResult"></div>
+        <p><a href="{{ url_for('profile') }}">Back to Profile</a></p>
+        <p><a href="{{ url_for('index') }}">Back to Front Page</a></p>
+    </div>
+    <script src="{{ url_for('static', filename='js/password_checker.js') }}"></script>
+</body>
+</html>
+

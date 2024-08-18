@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .modal-header, .modal-footer {
+            border: none;
+        }
+        .dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .dark-mode .table {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+        .dark-mode .modal-content {
+            background-color: #2c2c2c;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center">Admin Dashboard</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <!-- Dashboard Overview -->
+        <div class="mb-4">
+            <h4>Dashboard Overview</h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Users</h5>
+                            <p class="card-text">{{ total_users }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Recent Activity</h5>
+                            <p class="card-text">{{ recent_activity }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">System Alerts</h5>
+                            <p class="card-text">{{ system_alerts }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="mb-3">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search by name or email">
+        </div>
+
+        <!-- Table -->
+        <table class="table table-striped" id="userTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Phone Number</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user[0] }}</td>
+                    <td>{{ user[3] }}</td>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[2] }}</td>
+                    <td>{{ user[4] }}</td>
+                    <td>{{ user[5] }}</td>
+                    <td>{{ 'Active' if user[6] else 'Inactive' }}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editUserModal"
+                                data-id="{{ user[0] }}" data-name="{{ user[1] }}"
+                                data-email="{{ user[2] }}" data-phone="{{ user[4] }}"
+                                data-password="{{ user[3] }}" data-role="{{ user[5] }}"
+                                data-status="{{ user[6] }}">Edit
+                        </button>
+                        <form method="post" action="{{ url_for('admin_delete', user_id=user[0]) }}"
+                              style="display: inline">
+                            <input type="submit" class="btn btn-danger btn-sm" value="Delete"
+                                   onclick="return confirm('Are you sure?')">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Add User Button -->
+        <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#addUserModal">Add User</button>
+
+        <!-- Add User Modal -->
+        <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="post" action="{{ url_for('admin_add') }}">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="text" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="role">Role</label>
+                                <select class="form-control" id="role" name="role">
+                                    <option value="user">User</option>
+                                    <option value="moderator">Moderator</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="Add User">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit User Modal -->
+        <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form method="post" action="{{ url_for('admin_edit_post') }}">
+                        <div class="modal-body">
+                            <input type="hidden" id="editUserId" name="id">
+                            <div class="form-group">
+                                <label for="editName">Name</label>
+                                <input type="text" class="form-control" id="editName" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editEmail">Email</label>
+                                <input type="email" class="form-control" id="editEmail" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editPassword">New Password (Leave blank if not changing)</label>
+                                <input type="password" class="form-control" id="editPassword" name="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="editPhone">Phone Number</label>
+                                <input type="text" class="form-control" id="editPhone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="editRole">Role</label>
+                                <select class="form-control" id="editRole" name="role">
+                                    <option value="user">User</option>
+                                    <option value="moderator">Moderator</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="editStatus">Status</label>
+                                <select class="form-control" id="editStatus" name="status">
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="Save changes">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Feed -->
+        <div class="mb-4">
+            <h4>Activity Feed</h4>
+            <div class="card">
+                <div class="card-body">
+                    <p>{{ activity_feed }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Configuration -->
+        <div class="mb-4">
+            <h4>System Settings</h4>
+            <button class="btn btn-info mb-3" data-toggle="modal" data-target="#configModal">Manage Configuration</button>
+            <!-- Configuration Modal -->
+            <div class="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="configModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="configModalLabel">System Configuration</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form method="post" action="{{ url_for('admin_config') }}">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="sitePreferences">Site Preferences</label>
+                                    <input type="text" class="form-control" id="sitePreferences" name="sitePreferences">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Save changes">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Audit Logs -->
+        <div class="mb-4">
+            <h4>Audit Logs</h4>
+            <div class="card">
+                <div class="card-body">
+                    <p>{{ audit_logs }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two-Factor Authentication -->
+        <div class="mb-4">
+            <h4>Two-Factor Authentication</h4>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#2FAModal">Configure 2FA</button>
+            <!-- 2FA Modal -->
+            <div class="modal fade" id="2FAModal" tabindex="-1" role="dialog" aria-labelledby="2FAModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="2FAModalLabel">Configure Two-Factor Authentication</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form method="post" action="{{ url_for('admin_2fa') }}">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="2FASetup">2FA Setup</label>
+                                    <input type="text" class="form-control" id="2FASetup" name="2FASetup">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Save changes">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dark Mode Toggle -->
+        <button class="btn btn-secondary mb-3" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+        <!-- Logout Button -->
+        <a href="{{ url_for('admin_login') }}" class="btn btn-primary mt-3">Logout</a>
+    </div>
+
+    <!-- JavaScript and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('keyup', function () {
+            var searchTerm = this.value.toLowerCase();
+            var rows = document.querySelectorAll('#userTable tbody tr');
+            rows.forEach(function (row) {
+                var name = row.cells[1].textContent.toLowerCase();
+                var email = row.cells[2].textContent.toLowerCase();
+                if (name.includes(searchTerm) || email.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // Populate Edit Modal
+        $('#editUserModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var userId = button.data('id');
+            var userName = button.data('name');
+            var userEmail = button.data('email');
+            var userPhone = button.data('phone');
+            var userPassword = button.data('password');
+            var userRole = button.data('role');
+            var userStatus = button.data('status');
+            var modal = $(this);
+            modal.find('#editUserId').val(userId);
+            modal.find('#editName').val(userName);
+            modal.find('#editEmail').val(userEmail);
+            modal.find('#editPhone').val(userPhone);
+            modal.find('#editPassword').val(''); // Clear the password field for editing
+            modal.find('#editRole').val(userRole);
+            modal.find('#editStatus').val(userStatus ? 'active' : 'inactive');
+        });
+
+        // Toggle Dark Mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+
+</html>

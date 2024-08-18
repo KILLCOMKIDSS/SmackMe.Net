@@ -1,0 +1,207 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(145deg, #000000, #434343);
+    color: #ffffff; /* Set default text color to white for contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background: linear-gradient(145deg, #000000, #434343); }
+    50% { background: linear-gradient(145deg, #434343, #000000); }
+    100% { background: linear-gradient(145deg, #000000, #434343); }
+}
+
+/* Header styles */
+h2 {
+    color: #ff4500;
+    margin-top: 0;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    font-size: 2rem;
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    from {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    }
+    to {
+        text-shadow: 0 0 15px #ff4500, 0 0 30px #ff4500, 0 0 45px #ff4500;
+    }
+}
+
+/* Navigation styles */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+    position: relative;
+}
+
+nav ul li::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background: #ff4500;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+nav ul li:hover::after {
+    width: 100%;
+}
+
+/* Section styles */
+section {
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    font-family: 'Arial', sans-serif;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+section:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
+}
+
+/* Styling for links */
+a {
+    color: #ff4500; /* Orange color for links */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+a:hover {
+    color: #ffa500;
+    text-decoration: underline;
+    transform: scale(1.05);
+}
+
+/* Layout styles for side-by-side elements */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.profile-info, .bio-input, .additional-links {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid #ff4500;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profile-info {
+    max-width: 350px;
+}
+
+.bio-input {
+    max-width: 500px;
+}
+
+.additional-links {
+    max-width: 600px;
+}
+
+/* Bio and Profile Picture Update Form */
+.bio-input textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    color: #ffffff; /* White text for textarea */
+    padding: 12px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bio-input textarea:focus {
+    transform: scale(1.02);
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.bio-input input[type="file"] {
+    margin-top: 15px;
+    background: #ff4500;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.bio-input input[type="file"]:hover {
+    background: #cc3700;
+}
+
+.bio-input input[type="submit"] {
+    background-color: #ff4500;
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.bio-input input[type="submit"]:hover {
+    background-color: #cc3700;
+    transform: scale(1.05);
+}
+
+/* Error message styles */
+.error {
+    color: #ff4500;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Back link styles */
+.back-link {
+    margin-top: 30px;
+}
+
+.back-link a {
+    color: #ff4500; /* Orange color for back link */
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.back-link a:hover {
+    color: #ffa500;
+    text-decoration: underline;
+    transform: scale(1.05);
+}

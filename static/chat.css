@@ -1,0 +1,142 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f0f0f0, #d6e0f0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    perspective: 1200px; /* Adds depth for a 3D effect */
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 100%; /* Full width across the screen */
+    height: 80vh; /* Adjusted height to fit the viewport */
+    max-height: 80vh; /* Ensures the container doesnt exceed viewport height */
+    background-color: #ffffff;
+    border: 2px solid #ddd; /* Lighter border for a cleaner look */
+    border-radius: 16px; /* Rounded corners for a softer appearance */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transform: rotateX(5deg) rotateY(-3deg); /* Slight 3D rotation */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.chat-container:hover {
+    transform: rotateX(0deg) rotateY(0deg); /* Reset on hover for a lift effect */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+header {
+    padding: 16px;
+    background-color: #007bff; /* Header background color */
+    color: #ffffff;
+    text-align: center;
+    border-bottom: 2px solid #0056b3; /* Border under the header */
+}
+
+.home-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.chat-box {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Allows the chat box to fill the remaining space */
+    border-radius: 16px; /* Rounded corners matching the container */
+    overflow: hidden;
+    border: 2px solid #ddd; /* Border around the chat log */
+    background-color: #f9f9f9; /* Light background for chat box */
+}
+
+.messages {
+    flex: 1;
+    padding: 20px;
+    border-bottom: 2px solid #ddd; /* Increased border width for distinction */
+    overflow-y: auto;
+    background: radial-gradient(circle, #ffffff 0%, #f7f7f7 100%);
+    animation: fadeIn 1s ease-in-out; /* Smooth animation for messages */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message {
+    margin-bottom: 16px; /* Increased margin for spacing */
+    padding: 20px;
+    border-radius: 12px; /* Rounded corners for message boxes */
+    background: linear-gradient(145deg, #e3f2fd, #ffffff);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    transform: translateZ(0); /* Hardware acceleration */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth animations */
+}
+
+.message:hover {
+    transform: scale(1.03); /* Slight zoom effect on hover */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.message .username {
+    font-weight: 700;
+    color: #333;
+    font-size: 16px; /* Larger font size for usernames */
+    display: block;
+    margin-bottom: 8px; /* Space between username and message text */
+}
+
+.message .text {
+    color: #555;
+    font-size: 18px; /* Larger font size for message text */
+    line-height: 1.5; /* Improved readability */
+}
+
+form {
+    display: flex;
+    border-top: 2px solid #ddd; /* Border separating form from messages */
+    background-color: #ffffff;
+    padding: 10px; /* Padding inside the form */
+}
+
+form input {
+    flex: 1;
+    border: 1px solid #ddd; /* Border around input field */
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 0 0 0 12px; /* Rounded bottom-left corner */
+    outline: none;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+}
+
+form input:focus {
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #f9f9f9;
+}
+
+form button {
+    background-color: #007bff;
+    border: none;
+    color: #ffffff;
+    padding: 14px 22px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0 0 12px 0; /* Rounded bottom-right corner */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+form button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+form button:active {
+    transform: scale(0.98); /* Slight scale-down effect on click */
+}
+

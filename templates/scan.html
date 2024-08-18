@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pentesting Tools</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='scanner.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Pentesting Tools</h1>
+
+        <!-- Vulnerability Scanning -->
+        <section>
+            <h2>Vulnerability Scanning</h2>
+            <form id="vuln-scan-form">
+                <label for="target_url">Target URL:</label>
+                <input type="text" id="target_url" name="target_url" required>
+                <button type="submit">Scan</button>
+            </form>
+            <pre id="vuln-scan-result"></pre>
+        </section>
+
+        <!-- Port Scanning -->
+        <section>
+            <h2>Port Scanning</h2>
+            <form id="port-scan-form">
+                <label for="target_ip">Target IP:</label>
+                <input type="text" id="target_ip" name="target_ip" required>
+                <label for="port_range">Port Range:</label>
+                <input type="text" id="port_range" name="port_range" required>
+                <button type="submit">Scan</button>
+            </form>
+            <pre id="port-scan-result"></pre>
+        </section>
+
+        <!-- Web Application Testing -->
+        <section>
+            <h2>Web Application Testing</h2>
+            <form id="web-test-form">
+                <label for="test_url">Test URL:</label>
+                <input type="text" id="test_url" name="test_url" required>
+                <label for="test_type">Test Type:</label>
+                <select id="test_type" name="test_type" required>
+                    <option value="sql_injection">SQL Injection</option>
+                    <option value="xss">XSS</option>
+                </select>
+                <button type="submit">Test</button>
+            </form>
+            <pre id="web-test-result"></pre>
+        </section>
+    </div>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

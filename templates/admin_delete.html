@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='delete.css') }}">
+    <title>Delete User</title> 
+</head>
+<body>
+    <h2>Delete User</h2>
+    
+    <form method="post" action="{{ url_for('admin_delete', user_id=user[0]) }}">
+        <p>Are you sure you want to delete the user "{{ user[1] }}"?</p>
+        
+        <label for="confirm">Type the user's email to confirm:</label><br>
+        <input type="text" id="confirm" name="confirm"><br>
+        
+        <input type="submit" value="Confirm Delete">
+    </form>
+    
+    <br>
+    <a href="{{ url_for('admin_dashboard') }}">Cancel and Back to Dashboard</a>
+</body>
+</html>

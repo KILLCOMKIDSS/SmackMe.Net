@@ -1,0 +1,76 @@
+/* Global body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Black background */
+    color: #e0e0e0; /* Light text color for contrast */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items at the top */
+    min-height: 100vh; /* Ensure full viewport height */
+    padding: 20px; /* Add padding to body */
+}
+
+/* Container for profile */
+.container {
+    max-width: 800px;
+    width: 100%;
+    background-color: #222; /* Dark background to match profile-info */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8); /* Dark shadow for depth */
+    text-align: center;
+    color: #ff0000; /* Red color for text */
+}
+
+/* Header styles */
+h2 {
+    color: #ff0000; /* Red text color */
+    margin-top: 0;
+    border: 1px solid #ff0000; /* Red border */
+    padding: 10px;
+    display: inline-block; /* Make it inline block to fit content */
+    border-radius: 4px;
+}
+
+/* IP Input Section */
+.ip-input {
+    margin-bottom: 20px;
+}
+
+.ip-input label {
+    display: block;
+    margin-bottom: 5px;
+    color: #e0e0e0; /* Light text color for labels */
+}
+
+.ip-input input[type="text"] {
+    display: none; /* Hide the text input */
+}
+
+.ip-input button {
+    padding: 8px 16px;
+    background-color: #ff0000; /* Red background */
+    color: white; /* White text color */
+    border: 1px solid #ff0000; /* Red border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.ip-input button:hover {
+    background-color: #cc0000; /* Darker red on hover */
+    border-color: #cc0000; /* Darker red border on hover */
+}
+
+/* IP Details Section */
+#ip-details {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#ip-details p {
+    margin-bottom: 10px;
+    color: #ff0000; /* Red color for text */
+}
+

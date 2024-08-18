@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='no.css') }}">
+    <style>
+        /* Add some basic styling for new sections */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+        section {
+            margin-bottom: 20px;
+        }
+        .link-icon {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>(Logged in) (User Account)</h2>
+    </header>
+    <main>
+        {% if user %}
+        <div class="container">
+            <!-- Profile Info Section -->
+            <section class="profile-info">
+                <div class="profile-picture">
+                    {% if user[6] %}
+                        <img src="{{ url_for('static', filename='static/uploads' + user[6]) }}" alt="Profile Picture">
+                    {% else %}
+                        <p>No profile picture</p>
+                    {% endif %}
+                </div>
+                <strong>Name:</strong> {{ user[3] }}<br>
+                <strong>Email:</strong> {{ user[1] }}<br>
+                <strong>Phone Number:</strong> {{ user[4] }}<br>
+
+                <p>
+                    <img src="{{ url_for('static', filename='images/dashboard.png') }}" alt="Dashboard" class="link-icon"><br>
+                    <a href="{{ url_for('dashboard') }}">Go to Dashboard</a>
+                </p>
+                <p>
+                    <img src="{{ url_for('static', filename='images/chat.png') }}" alt="Chat With Users!" class="link-icon"><br>
+                    <a href="{{ url_for('chat') }}">Chat!</a>
+                </p>
+                <p>
+                    <img src="{{ url_for('static', filename='images/delete.png') }}" alt="Delete Account" class="link-icon"><br>
+                    <a href="{{ url_for('delete_account') }}">Delete Account</a>
+                </p>
+                <p>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </p>
+            </section>
+
+            <!-- Bio and Profile Picture Update Form -->
+            <section class="bio-input">
+                <form action="{{ url_for('profile') }}" method="POST" enctype="multipart/form-data">
+                    <textarea name="bio" rows="5" cols="50" placeholder="Enter your bio">{{ user[5] }}</textarea><br>
+                    <input type="file" name="profile_picture" accept="image/*"><br><br>
+                    <input type="submit" value="Update Bio and Profile Picture">
+                </form>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="recent-activity">
+                <h3>Recent Activity</h3>
+                <ul>
+                    <li><a href="#">Activity 1</a></li>
+                    <li><a href="#">Activity 2</a></li>
+                    <li><a href="#">Activity 3</a></li>
+                </ul>
+            </section>
+
+            <!-- Social Media Links -->
+            <section class="social-media">
+                <h3>Connect with me</h3>
+                <p><a href="https://twitter.com/username" target="_blank">Twitter</a></p>
+                <p><a href="https://linkedin.com/in/username" target="_blank">LinkedIn</a></p>
+                <p><a href="https://github.com/username" target="_blank">GitHub</a></p>
+            </section>
+
+            <!-- Notifications -->
+            <section class="notifications">
+                <h3>Notifications</h3>
+                <ul>
+                    <li>No new notifications</li>
+                </ul>
+            </section>
+
+            <!-- Account Settings -->
+            <section class="account-settings">
+                <h3>Account Settings</h3>
+                <p><a href="{{ url_for('settings') }}">Manage Settings</a></p>
+            </section>
+
+            <!-- Additional Links -->
+            <section class="additional-links">
+                <h3>Power.net Tool List</h3>
+                <p><a href="{{ url_for('perform_udp_flood') }}">UDP - 1 Concurrent (more soon)</a> -->>> UDP flood. Only with 1 Concurrent.</p>
+                <p><a href="{{ url_for('ip_osint_lookup') }}">Power.net OSINT</a> -->>> IP OSINT with more than 15 different Results.</p>
+                <p><a href="{{ url_for('perform_ssh_brute_force') }}">SSH BRUTE</a> -->>> SSH brute. Has the ability for hashed passwords.</p>
+                <p><a href="{{ url_for('scan') }}">Port Scanner</a> -->>> Scanner. It scans things</p>
+                <p><a href="#">HTTPS/HTTP Flood</a> -->>> blah blah for now</p>
+                <p><a href="#">TCP BYPASS Flood</a> -->>> blah blah for now</p>
+                <p><a href="{{ url_for('terms_of_service') }}">Terms of Service</a> -->>> It's not long, Only a couple of lines</p>
+            </section>
+        </div>
+        {% else %}
+        <p class="error">User not found.</p>
+        {% endif %}
+        
+        <p class="back-link"><a href="{{ url_for('index') }}">Back to Home</a></p>
+    </main>
+</body>
+</html>
